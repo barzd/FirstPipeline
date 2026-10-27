@@ -1,1 +1,4 @@
 myvm
+__pycache__/
+*.py[cod]
+db.sqlite3
