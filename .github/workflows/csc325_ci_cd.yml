@@ -51,19 +51,10 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python manage.py makemigrations --check --dry-run
 
-  package:
-    name: Stage 4 - Package
-    needs: migrations
+  deploy:
+    name: Stage 4 - Deploy (demo)
+    needs: [test, migrations]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/upload-artifact@v4
-        with:
-          name: django-source
-          path: |
-            manage.py
-            requirements.txt
-            myapp/
-            csc325djangoproject/csc325djangoproject/
-            !**/__pycache__/**
-          if-no-files-found: error
+      - name: Simulate deployment
+        run: echo "Deploy stage complete (demo only; no public app URL configured)."
